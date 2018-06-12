@@ -24158,4 +24158,10 @@ body.dark #styleSelector .form-control {
 #real-time-update, #real-time-update canvas {
   width: 100% !important;
 }
+.has-error{
+  border:1px solid #FC6180 !important;
+}
+.no-error{
+  border:1px solid #11c15b !important;
 
+}
