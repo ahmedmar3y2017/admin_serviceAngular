@@ -1,8 +1,30 @@
+import { AuthGuard } from './shared/Services/auth.guard';
 import {Routes} from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {AuthComponent} from './layout/auth/auth.component';
 
 export const AppRoutes: Routes = [
+
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      {
+        path:'',
+        redirectTo: 'authentication/login',
+        pathMatch:'full',
+
+
+      } ,
+      {
+        path:'authentication',
+        loadChildren: './pages/authentication/authentication.module#AuthenticationModule',
+
+
+      } ,
+
+    ]
+  } ,
   {
     path: '',
     component: AdminComponent,
@@ -13,6 +35,7 @@ export const AppRoutes: Routes = [
         pathMatch: 'full'
       }, {
         path: 'dashboard',
+        canActivate:[AuthGuard],
         loadChildren: './pages/dashboard/dashboard-default/dashboard-default.module#DashboardDefaultModule'
       }, {
         path: 'basic',
@@ -32,15 +55,6 @@ export const AppRoutes: Routes = [
       }, {
         path: 'simple-page',
         loadChildren: './pages/simple-page/simple-page.module#SimplePageModule'
-      }
-    ]
-  }, {
-    path: '',
-    component: AuthComponent,
-    children: [
-      {
-        path: 'authentication',
-        loadChildren: './pages/authentication/authentication.module#AuthenticationModule'
       }
     ]
   }

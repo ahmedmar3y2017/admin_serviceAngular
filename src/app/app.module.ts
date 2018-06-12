@@ -1,3 +1,5 @@
+import { UserService } from './shared/Services/user.service';
+import { AuthGuard } from './shared/Services/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
@@ -29,7 +31,7 @@ import {AuthComponent} from './layout/auth/auth.component';
     ClickOutsideModule,
     SharedModule
   ],
-  providers: [],
+  providers: [AuthGuard , UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
