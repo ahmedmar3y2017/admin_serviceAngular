@@ -17,7 +17,7 @@
           <a class="mobile-menu" id="mobile-collapse" href="javascript:;" (click)="toggleOpened()" [exclude]="'#main_navbar'" (clickOutside)="onClickedOutside($event)">
             <i class="ti-menu"></i>
           </a>
-          <a [routerLink]="['/']">
+          <a [routerLink]="['/dashboard']">
             <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo"/>
           </a>
           <a (click)="onMobileMenu()" class="mobile-options">
@@ -36,7 +36,8 @@
                   <i class="ti-fullscreen"></i>
                 </a>
               </li>
-              <li class="mega-menu-top">
+
+              <!-- <li class="mega-menu-top">
                 <a href="javascript:;">
                   Mega
                   <i class="ti-angle-down"></i>
@@ -150,40 +151,14 @@
                     </div>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             </ul>
             <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
-              <li class="header-notification lng-dropdown">
-                <a href="javascript:;" id="dropdown-active-item">
-                  <img src="assets/images/flags/ENGLISH.jpg" alt=""> English
-                </a>
-                <ul class="show-notification">
-                  <li>
-                    <a href="javascript:;" data-lng="en">
-                      <img src="assets/images/flags/ENGLISH.jpg" alt=""> English
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="es">
-                      <img src="assets/images/flags/SPAIN.jpg" alt=""> Spanish
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="pt">
-                      <img src="assets/images/flags/PORTO.jpg" alt=""> Portuguese
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="fr">
-                      <img src="assets/images/flags/FRANCE.jpg" alt=""> French
-                    </a>
-                  </li>
-                </ul>
-              </li>
+
               <li class="header-notification">
                 <a href="javascript:;">
                   <i class="ti-bell"></i>
-                  <span class="badge bg-c-pink"></span>
+                  <span class="badge bg-c-pink">4</span>
                 </a>
                 <ul class="show-notification">
                   <li>
@@ -220,25 +195,38 @@
                       </div>
                     </div>
                   </li>
+
+                    <!-- <div class="view"></div> -->
+                    <li class="divider div_notify"></li>
+
+                    <li class=" text-center">
+                    <!-- <hr> -->
+                      <a  [routerLink]="['/']">
+                        <span>  VIEW ALL </span>
+                      </a>
+
+                  </li>
                 </ul>
               </li>
               <li class="user-profile header-notification">
                 <a [routerLink]="['/']">
                   <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                  <span>John Doe</span>
+                  <span>Nike IN</span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
-                  <li>
+                  <!-- <li>
                     <a href="javascript:;">
                       <i class="ti-settings"></i> Settings
                     </a>
-                  </li>
+                  </li> -->
                   <li>
                     <a [routerLink]="['/user']">
-                      <i class="ti-user"></i> Profile
+                      <i class="ti-user"></i>
+                      Profile
                     </a>
                   </li>
+
                   <li>
                     <a [routerLink]="['/notifications']">
                       <i class="ti-email"></i> My Messages
@@ -252,9 +240,8 @@
                 </ul>
               </li>
               <li>
-                <div class="upgrade-button-header f-left">
-                  <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-primary txt-white p-t-10 p-b-10">Upgrade To Pro</a>
-                </div>
+
+
               </li>
             </ul>
           </div>
@@ -271,20 +258,21 @@
               <div class="main-menu-header">
                 <img class="img-40 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
                 <div class="user-details">
-                  <span>John Doe</span>
-                  <span id="more-details" (click)="toggleOpenedSidebar()">UX Designer<i class="ti-angle-down"></i></span>
+                  <span>Nike IN</span>
+                  <span id="more-details" (click)="toggleOpenedSidebar()">Sports Wear<i class="ti-angle-down"></i></span>
                 </div>
               </div>
               <div class="main-menu-content">
                 <ul>
                   <li [@mobileMenuTop]="isCollapsedSideBar" class="more-details" [ngClass]="isCollapsedSideBar">
                     <a [routerLink]="['/user/profile']"><i class="ti-user"></i>View Profile</a>
-                    <a [routerLink]="['/crm-contact']"><i class="ti-settings"></i>Settings</a>
+                    <a [routerLink]="['/notifications']"><i class="ti-email"></i>my Messages</a>
                     <a [routerLink]="['/authentication/login/with-bg-image']"><i class="ti-layout-sidebar-left"></i>Logout</a>
                   </li>
                 </ul>
               </div>
             </div>
+
             <div class="pcoded-search">
               <span class="searchbar-toggle">  </span>
               <div class="pcoded-search-box ">
@@ -292,6 +280,7 @@
                 <span class="search-icon"><i class="ti-search" aria-hidden="true"></i></span>
               </div>
             </div>
+
             <div slimScroll width="100%" height="calc(100% - 80px)" size="4px" color="#fff" opacity="0.3" allowPageScroll="false">
               <div *ngFor="let asideItems of menuItems.getAll()" class="d-color">
                 <div class="pcoded-navigatio-lavel" [attr.menu-title-theme]="menuTitleTheme">{{asideItems.label}}</div>
