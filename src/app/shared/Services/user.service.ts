@@ -6,7 +6,7 @@ export class UserService{
  IsloggedIn :boolean;
 
 constructor() {
-  this.IsloggedIn = false;
+  this.IsloggedIn = true;
   }
 
   SetUserLoggedIn(){

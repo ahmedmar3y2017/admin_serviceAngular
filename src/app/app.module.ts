@@ -1,3 +1,5 @@
+import { HttpModule } from '@angular/http';
+import { CountryService } from './shared/Services/Country.service';
 import { UserService } from './shared/Services/user.service';
 import { AuthGuard } from './shared/Services/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,9 +31,10 @@ import {AuthComponent} from './layout/auth/auth.component';
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
     ClickOutsideModule,
-    SharedModule
+    SharedModule ,
+    HttpModule
   ],
-  providers: [AuthGuard , UserService],
+  providers: [AuthGuard , UserService , CountryService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
