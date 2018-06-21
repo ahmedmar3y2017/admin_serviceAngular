@@ -1,7 +1,9 @@
+@import url('../node_modules/font-awesome/css/font-awesome.min.css');
+
 body {
   background-color: #f3f3f3;
   font-size: 0.875em;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   color: #353c4e;
   font-family: "Open Sans", sans-serif;
 }
@@ -1221,7 +1223,10 @@ a.mytooltip {
   height: 20px;
   margin-right: 0;
 }
+.input-group-sm{
+  width:50%;
 
+}
 .docs-data > .input-group {
   margin-bottom: 10px;
 }
@@ -13382,6 +13387,7 @@ body.menu-bottom #collapse-menu {
 ==========================  **/
 .input-group {
   margin-bottom: 1.25em;
+  position:relative;
 }
 
 .input-group-addon {
@@ -18378,7 +18384,13 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
   text-align: center;
   width: 100%;
 }
+.login{
+  position: relative;
+}
+.fixed{
+  position: fixed;
 
+}
 .auth-box {
   background-color: #fff;
   border-radius: 8px;
@@ -24165,3 +24177,21 @@ body.dark #styleSelector .form-control {
   border:1px solid #11c15b !important;
 
 }
+.input-group-text{
+  background: #dadada;
+  padding:6px 4px;
+  border: 1px solid #cccccc;
+
+}
+.input-group-text i {
+  font-size: 17px;
+  color:#007bff;
+}
+.div_notify{
+  border-bottom:1px solid #ccc;
+  /* margin-bottom:1rem; */
+
+}
+textarea { resize: none; }
+
+
