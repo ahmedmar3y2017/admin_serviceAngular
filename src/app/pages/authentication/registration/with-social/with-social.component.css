@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+
+::-moz-selection { background: #007bff; color: #fff; text-shadow: none; }
+::selection { background: #007bff; color: #fff; text-shadow: none; }
+
+
+/***** Top content *****/
+.sign-card{
+ min-width:700px;
+}
+
+
+.inpt-icon  {
+  position: absolute;
+  margin-left: 5px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+
+  color: #007bff;
+}
+.form-box { padding-top: 40px; }
+
+.f1 {
+padding: 25px 35px;
+ background: #fff;
+ /* overflow: scroll; */
+
+-moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+}
+.f1 h3 { margin-top: 0; margin-bottom: 5px; text-transform: uppercase; }
+
+.f1-steps { overflow: hidden; position: relative; margin-top: 20px; }
+
+.f1-progress { position: absolute; top: 24px; left: 0; width: 100%; height: 1px; background: #ddd; }
+.f1-progress-line { position: absolute; top: 0; left: 0; height: 1px; background: #007bff; }
+
+.f1-step { position: relative; float: left; width: 33.333333%; padding: 0 5px; }
+
+.f1-step-icon {
+display: inline-block; width: 40px; height: 40px; margin-top: 4px; background: #ddd;
+font-size: 16px; color: #fff; line-height: 40px;
+-moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
+}
+.f1-step.activated .f1-step-icon {
+background: #fff; border: 1px solid #007bff; color:#007bff; line-height: 38px;
+}
+.f1-step.active .f1-step-icon {
+width: 48px; height: 48px; margin-top: 0; background: #007bff; font-size: 22px; line-height: 48px;
+}
+
+
+.step-title{
+  margin-top: 4px;
+  /* font-weight: bold; */
+  font-size: 15px;
+
+}
+.f1-step p { color: #ccc; }
+.f1-step.activated p { color: #007bff; }
+.f1-step.active p { color: #007bff; }
+
+.f1 fieldset { display: none; text-align: left; }
+
+.f1-buttons { text-align: right; }
+.f1-buttons button , .f1-buttons button:focus  {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.f1-buttons button:disabled{
+  cursor: not-allowed;
+}
+.f1-buttons button:disabled i {
+  color: #ccc !important;
+
+}
+
+.f1-buttons button i {
+  font-size: 25px;
+  color: #007bff;
+}
+
+.f1 .input-error { border-color: #007bff; }
+
+
+
+/***** Media queries *****/
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+@media (max-width: 767px) {
+}
+
+
+
+
+
+.confirmation .confirm-title{
+  font-weight: 900;
+  font-size: 35px;
+  font-family: 'Oswald', sans-serif;
+  color: #878686;
+  letter-spacing: 0.8px;
+
+}
+
+.confirmation i{
+  color: #b5adad;
+  font-size: 1.189em;
+
+}
+.confirmation p{
+  color: #b5adad;
+
+  font-family: 'Oswald', sans-serif;
+
+}
+.confirmation  button{
+  border-radius: 15px;
+
+}
+.f1-buttons{
+  padding-top: 15px;
+  margin-top: 20px;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
