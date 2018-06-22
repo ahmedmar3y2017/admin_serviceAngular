@@ -1,3 +1,4 @@
+import { ProductsComponent } from './pages/products/products.component';
 import { AuthGuard } from './shared/Services/auth.guard';
 import {Routes} from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
@@ -55,6 +56,12 @@ export const AppRoutes: Routes = [
       }, {
         path: 'simple-page',
         loadChildren: './pages/simple-page/simple-page.module#SimplePageModule'
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+        // loadChildren: './pages/simple-page/simple-page.module#SimplePageModule'
+
       }
     ]
   }
