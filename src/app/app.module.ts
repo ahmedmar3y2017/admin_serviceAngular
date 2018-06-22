@@ -7,6 +7,7 @@ import { AuthGuard } from './shared/Services/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutes } from './app.routing';
 
@@ -18,12 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
 import { TitleComponent } from './layout/admin/title/title.component';
 import { AuthComponent } from './layout/auth/auth.component';
+import { UploadFileService } from "./shared/Services/uploadservice/upload-file-service.service";
 
 import { RegisteruploadComponent } from "./pages/authentication/registration/registerupload/registerupload.component";
-
-import { UploadFileService } from "./shared/Services/uploadservice/upload-file-service.service";
-import { WithBgImageComponent } from "./pages/authentication/login/with-bg-image/with-bg-image.component";
-
+// import { WithBgImageComponent } from "./pages/authentication/login/with-bg-image/with-bg-image.component";
 import { ProductsComponent } from "./pages/products/products.component";
 @NgModule({
   declarations: [
@@ -31,9 +30,10 @@ import { ProductsComponent } from "./pages/products/products.component";
     AdminComponent,
     BreadcrumbsComponent,
     TitleComponent,
-    AuthComponent,
+    AuthComponent
+    ,
     RegisteruploadComponent,
-    WithBgImageComponent , 
+    // WithBgImageComponent,
     ProductsComponent
   ],
   imports: [
@@ -42,7 +42,9 @@ import { ProductsComponent } from "./pages/products/products.component";
     RouterModule.forRoot(AppRoutes),
     ClickOutsideModule,
     SharedModule,
-    HttpModule
+    HttpModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard, UserService, CountryService, RegisterService, UploadFileService],
   bootstrap: [AppComponent]

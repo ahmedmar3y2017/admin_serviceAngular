@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from '../../../../shared/Services/register.service';
 import { Admin } from '../../../../shared/Entities/admin';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-with-bg-image',
