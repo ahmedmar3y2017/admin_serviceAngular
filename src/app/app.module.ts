@@ -22,7 +22,7 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { RegisteruploadComponent } from "./pages/authentication/registration/registerupload/registerupload.component";
 
 import { UploadFileService } from "./shared/Services/uploadservice/upload-file-service.service";
-
+import { WithBgImageComponent } from "./pages/authentication/login/with-bg-image/with-bg-image.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,8 @@ import { UploadFileService } from "./shared/Services/uploadservice/upload-file-s
     BreadcrumbsComponent,
     TitleComponent,
     AuthComponent,
-    RegisteruploadComponent
+    RegisteruploadComponent , 
+    WithBgImageComponent
   ],
   imports: [
     BrowserModule,

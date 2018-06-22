@@ -21,7 +21,7 @@ export class WithBgImageComponent implements OnInit {
 
   admin: Admin[];
 
-  constructor( private loginService: UserService, private loginRouter: Router, fb: FormBuilder) {
+  constructor(private loginService: UserService, private loginRouter: Router, fb: FormBuilder) {
 
     this.complexForm = fb.group({
 
@@ -31,7 +31,7 @@ export class WithBgImageComponent implements OnInit {
 
     });
 
-   
+
 
   }
 
