@@ -23,6 +23,8 @@ import { RegisteruploadComponent } from "./pages/authentication/registration/reg
 
 import { UploadFileService } from "./shared/Services/uploadservice/upload-file-service.service";
 import { WithBgImageComponent } from "./pages/authentication/login/with-bg-image/with-bg-image.component";
+
+import { ProductsComponent } from "./pages/products/products.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +32,9 @@ import { WithBgImageComponent } from "./pages/authentication/login/with-bg-image
     BreadcrumbsComponent,
     TitleComponent,
     AuthComponent,
-    RegisteruploadComponent , 
-    WithBgImageComponent
+    RegisteruploadComponent,
+    WithBgImageComponent , 
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
