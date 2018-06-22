@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Basic table card start -->
+    <app-card [title]="'Product table'" [classHeader]="true" [blockClass]="'table-border-style'">
+      <div class="table-responsive table-hover table-sm table-striped" style="padding: 10px 5px;">
+        <table class="table">
+          <thead>
+          <tr class = "text-center">
+            <th>#</th>
+            <th *ngFor = "let head of tableHeader">{{head}}</th>
+            <th ><em class="fa fa-cog"></em></th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr  align="center">
+              <td>1</td>
+              <td>IphoneX</td>
+              <td>50</td>
+              <td>10%</td>
+              <td>19.000</td>
+              <td>100</td>
+              <td>50</td>
+              <td>Apple</td>
+              <td>Mobile-phone</td>
+              <td>Image</td>
+              <td>Mobile-phone</td>
+
+
+
+              <!-- last cell -->
+              <td align="center">
+                <a class="btn cus-btn btn-default"><em class="fa fa-pencil"></em></a>
+                <a class="btn cus-btn btn-danger"><em class="fa fa-trash"></em></a>
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+
+      <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-end m-b-20 m-t-20 m-r-20 ">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </app-card>
+
+
+
+  </div>
+</div>
+    <!-- Basic table card end -->
+
+
