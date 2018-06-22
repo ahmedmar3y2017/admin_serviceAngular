@@ -1,0 +1,11 @@
+.cus-btn{
+  padding: 5px 10px;
+  color:#f3f3f3 ;
+  border-radius: 5px;
+}
+.cus-btn:first-of-type{
+  border: 1px solid #ddd;
+}
+th{
+  text-align:  center !important;
+}
