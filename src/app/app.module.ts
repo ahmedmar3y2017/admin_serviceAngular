@@ -2,6 +2,7 @@ import { HttpModule } from '@angular/http';
 import { CountryService } from './shared/Services/Country.service';
 import { UserService } from './shared/Services/user.service';
 import { RegisterService } from './shared/Services/register.service';
+import { ProductService } from './shared/Services/product.service';
 
 import { AuthGuard } from './shared/Services/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,7 +50,12 @@ import { ProductsComponent } from "./pages/products/products.component";
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthGuard, UserService, CountryService, RegisterService, UploadFileService],
+  providers: [AuthGuard,
+    UserService,
+    CountryService,
+    RegisterService,
+    UploadFileService,
+    ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
