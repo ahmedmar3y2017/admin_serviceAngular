@@ -19,11 +19,11 @@ export class RegisterService {
   constructor(private _http: Http) {
   }
 
-  
+
 
 
   // save Business
-  saveBusiness(business: Business): Observable<number> {
+  saveBusiness(business: Business): Observable<Business> {
 
     let username: string = 'admin';
     let password: string = 'admin';
@@ -33,12 +33,12 @@ export class RegisterService {
 
     const options = new RequestOptions({ headers: headers });
     return this._http.post(this._baseUrl + "/business", business, options)
-      .map(success => success.status);
+      .map((response: Response) => <Business>response.json());
 
   }
 
   // save Admin
-  saveAdmins(admin: Admin): Observable<number> {
+  saveAdmins(admin: Admin, businessId: number): Observable<Admin> {
     let username: string = 'admin';
     let password: string = 'admin';
     let headers: Headers = new Headers();
@@ -46,8 +46,8 @@ export class RegisterService {
     headers.append("Content-Type", "application/json; charset=utf8");
 
     const options = new RequestOptions({ headers: headers });
-    return this._http.post(this._baseUrl+"/business/"+"1"+"/admin", admin, options)
-      .map(success => success.status);
+    return this._http.post(this._baseUrl + "/business/" + businessId + "/admin", admin, options)
+      .map((response: Response) => <Admin>response.json());
 
   }
   // get city 

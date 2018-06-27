@@ -8,6 +8,7 @@ import { Admin } from '../../../../shared/Entities/admin';
 import { Business } from '../../../../shared/Entities/Business';
 import { UploadFileService } from '../../../../shared/Services/uploadservice/upload-file-service.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // declare var jquery:any;
 // declare var $ :any;
@@ -84,11 +85,12 @@ export class WithSocialComponent implements OnInit {
   }
   registerForm: FormGroup;
   // payment_methods:[];
-  data: any = [{}]
+  data: any = [{}];
 
   constructor(private registerService: RegisterService,
     private fb: FormBuilder, private country: CountryService,
     private uploadService: UploadFileService,
+    private router: Router
 
   ) {
 
@@ -143,23 +145,24 @@ export class WithSocialComponent implements OnInit {
 
     // }
 
+
+    // check First Admin And Business Accounts if Exists 
+
     // ****************** save Business First ****************
 
     this.registerService.saveBusiness(this.business).subscribe(data => {
 
-      if (data === 201) {
-        console.log(this.admin.id);
+      this.registerService.saveAdmins(this.admin, data.id).subscribe(dd => {
 
 
-      } else {
-        console.log("Error Insert Into database ");
-      }
+        // redirect To Login To Login As Admin 
+        this.router.navigate(['authentication/login']);
 
-    }, error => {
-      console.log(JSON.stringify(error.json()));
-    });
-    this.registerService.saveAdmins(this.admin).subscribe(dd => {
-      console.log("ِadmin : "+dd);
+
+
+      }, error => {
+        console.log(JSON.stringify(error.json()));
+      });
 
 
     }, error => {
@@ -176,28 +179,7 @@ export class WithSocialComponent implements OnInit {
     this.getCity(newValue);
 
   }
-  SaveBusiness(business: Business) {
-    // save Business Service 
-    this.registerService.saveBusiness(business).subscribe(data => {
-      console.log(data);
-    }, error => {
-      console.log(JSON.stringify(error.json()));
-    });
 
-
-
-  }
-  saveAdmin(admin: Admin) {
-    // save admin Service 
-    this.registerService.saveAdmins(admin).subscribe(data => {
-      console.log(data);
-    }, error => {
-      console.log(JSON.stringify(error.json()));
-    });
-
-
-
-  }
   getAllCountries() {
     this.country.getData().subscribe(data => {
       this.data = data;
@@ -240,17 +222,7 @@ export class WithSocialComponent implements OnInit {
     this.selectedFiles = undefined;
   }
 
-
-
-
-  // *******************************************************
-
-
-
-
   // *********************************************************************
-
-
 
   SlideFun() {
 
