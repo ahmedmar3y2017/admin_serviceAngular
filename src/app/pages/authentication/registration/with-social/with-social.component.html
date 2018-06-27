@@ -5,7 +5,7 @@
       <div class="col-sm-12">
         <!-- Authentication card start -->
         <div class="form-box sign-card card-body auth-body">
-          <form [formGroup]="registerForm" novalidate id="msform" class="f1 md-float-material">
+          <form #fo="ngForm" (ngSubmit)="mySubmit(fo)" [formGroup]="registerForm" novalidate id="msform" class="f1 md-float-material">
             <div class="text-center">
               <img src="assets/images/auth/logo-dark.png" alt="logo.png">
             </div>
@@ -90,7 +90,7 @@
                   <i class="fa fa-phone" aria-hidden="true"></i>
                 </span>
 
-                <input type="number" name="BiPhone" [(ngModel)]="business.contact" class="form-control" placeholder="Phone  * " [formControl]="registerForm.controls['BiContact']"
+                <input type="number" name="BiName" [(ngModel)]="business.contact" class="form-control" placeholder="Phone  * " [formControl]="registerForm.controls['BiContact']"
                   [ngClass]="{ 'has-error' : !registerForm.controls['BiContact'].valid && registerForm.controls['BiContact'].touched && registerForm.controls['BiContact'].dirty }">
 
                 <span class="md-line"></span>
@@ -113,14 +113,12 @@
 
               <!-- end name -->
 
-
+              <!-- ************************************ start Address Business **************** -->
               <div class="input-group">
 
 
                 <select (change)="getCity($event)" id="CountriesBox" class="m-r-5 custom-select col-md-4 col-xs-12" [formControl]="registerForm.controls['BiCountry']"
-                  [ngClass]="{ 'has-error' : !registerForm.controls['BiCountry'].valid && registerForm.controls['BiCountry'].touched && registerForm.controls['BiCountry'].dirty }"
-                  [ngModel]="business.country" (ngModelChange)="onChange($event)"
-                  >
+                  [(ngModel)]="business.country" (ngModelChange)="onChange($event)" [ngClass]="{ 'has-error' : !registerForm.controls['BiCountry'].valid && registerForm.controls['BiCountry'].touched && registerForm.controls['BiCountry'].dirty }">
 
 
 
@@ -129,11 +127,9 @@
                 </select>
 
 
-                <select class="custom-select m-r-5 col-md-4 col-xs-12"
-                 [formControl]="registerForm.controls['BiCity']"
-                  [ngClass]="{ 'has-error' : !registerForm.controls['BiCity'].valid && registerForm.controls['BiCity'].touched && registerForm.controls['BiCity'].dirty }"
-                  [ngModel]="business.city"
-                  >
+                <select class="custom-select m-r-5 col-md-4 col-xs-12" [formControl]="registerForm.controls['BiCity']" [(ngModel)]="business.city"
+                  [ngClass]="{ 'has-error' : !registerForm.controls['BiCity'].valid && registerForm.controls['BiCity'].touched && registerForm.controls['BiCity'].dirty }">
+
 
                   <option selected>City...</option>
                   <option *ngFor="let ci of city" value="{{ci.city}}">{{ci.city}}</option>
@@ -142,11 +138,8 @@
                 </select>
 
 
-                <select class="custom-select m-r-5 col-md-4 col-xs-12" id="inputGroupSelect04"
-                 [formControl]="registerForm.controls['BiState']"
-                  [ngClass]="{ 'has-error' : !registerForm.controls['BiState'].valid && registerForm.controls['BiState'].touched && registerForm.controls['BiState'].dirty }"
-                  [ngModel]="business.state"
-                  >
+                <select class="custom-select m-r-5 col-md-4 col-xs-12" id="inputGroupSelect04" [formControl]="registerForm.controls['BiState']"
+                  [(ngModel)]="business.state" [ngClass]="{ 'has-error' : !registerForm.controls['BiState'].valid && registerForm.controls['BiState'].touched && registerForm.controls['BiState'].dirty }">
                   <option selected>State...</option>
                   <option *ngFor="let ci of city" value="{{ci.state}}">{{ci.state}}</option>
 
@@ -160,7 +153,7 @@
 
               <!-- end Address -->
               <!-- validation -->
-              <!-- <div *ngIf="registerForm.controls['BiCountry'].errors && (registerForm.controls['BiCountry'].dirty && registerForm.controls['BiCountry'].touched) ||
+              <div *ngIf="registerForm.controls['BiCountry'].errors && (registerForm.controls['BiCountry'].dirty && registerForm.controls['BiCountry'].touched) ||
 
                       registerForm.controls['BiCity'].errors && (registerForm.controls['BiCity'].dirty && registerForm.controls['BiCity'].touched) ||
 
@@ -174,56 +167,91 @@
                 </p>
 
 
-              <!-- </div> --> -->
+              </div>
 
               <label class="text-inverse" for="exampleFormControlTextarea1">Description</label>
               <div class="input-group">
-                <textarea [ngModel]="business.description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Short Description About Bussiness ...."></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" 
+                rows="3"
+                placeholder="Short Description About Bussiness ...."></textarea>
               </div>
 
 
               <div class="form-group">
-                <label class="text-inverse">Upload Image</label>
                 <div class="input-group">
-                  <span class="input-group-btn">
-                    <span class="btn btn-primary btn-file">
-                      Browse…
-                      <input type="file" id="imgInp">
-                    </span>
-                  </span>
-                  <input type="text" class="form-control" readonly>
+
                 </div>
 
               </div>
 
+              <!-- ****************** upload image For business ************** -->
+              <label class="text-inverse">Upload Image</label>
+
+              <div *ngIf="currentFileUpload" class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                  aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                  {{progress.percentage}}%</div>
+              </div>
+
+              <label class="btn btn-default">
+                <input type="file" (change)="selectFile($event)">
+              </label>
+
+              <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+
               <div class="f1-buttons m-t-30">
-                <button  class="btn-next" title="Next">
+                <button type="button" class="btn-next" title="Next">
 
                   <i class="fa fa-chevron-right"></i>
                 </button>
               </div>
+              <!-- ****************** End Upload Image For Business  ************** -->
 
 
             </fieldset>
-
+            <!-- ******************************* Admin  ************************ -->
             <fieldset>
 
-
+              <!-- firstName Admin  -->
               <div class="input-group ">
                 <span class="input-group-text">
                   <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 </span>
 
-                <input type="text" name="AdminName" class="form-control" placeholder="Name * " [formControl]="registerForm.controls['AdminName']"
-                  [ngClass]="{ 'has-error' : !registerForm.controls['AdminName'].valid && registerForm.controls['AdminName'].touched && registerForm.controls['AdminName'].dirty }">
+                <input [(ngModel)]="admin.firstName" type="text" name="AdminFirstName" class="form-control" placeholder="First Name * " [formControl]="registerForm.controls['AdminFirstName']"
+                  [ngClass]="{ 'has-error' : !registerForm.controls['AdminFirstName'].valid && registerForm.controls['AdminFirstName'].touched && registerForm.controls['AdminFirstName'].dirty }">
 
                 <span class="md-line"></span>
               </div>
 
               <!-- validation -->
-              <div *ngIf="registerForm.controls['AdminName'].errors && (registerForm.controls['AdminName'].dirty && registerForm.controls['AdminName'].touched)">
+              <div *ngIf="registerForm.controls['AdminFirstName'].errors && (registerForm.controls['AdminFirstName'].dirty && registerForm.controls['AdminFirstName'].touched)">
 
-                <p class="text-left text-danger" [hidden]="!registerForm.controls['AdminName'].errors.required"> * Name is required
+                <p class="text-left text-danger" [hidden]="!registerForm.controls['AdminFirstName'].errors.required"> * Name is required
+
+                </p>
+
+              </div>
+
+              <!-- end name -->
+
+              <!-- lastName Admin  -->
+              <div class="input-group ">
+                <span class="input-group-text">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </span>
+
+                <input [(ngModel)]="admin.lastName" type="text" name="AdminLastName" class="form-control" placeholder="Last Name * " [formControl]="registerForm.controls['AdminLastName']"
+                  [ngClass]="{ 'has-error' : !registerForm.controls['AdminLastName'].valid && registerForm.controls['AdminLastName'].touched && registerForm.controls['AdminLastName'].dirty }">
+
+                <span class="md-line"></span>
+              </div>
+
+              <!-- validation -->
+              <div *ngIf="registerForm.controls['AdminLastName'].errors && (registerForm.controls['AdminLastName'].dirty && registerForm.controls['AdminLastName'].touched)">
+
+                <p class="text-left text-danger" [hidden]="!registerForm.controls['AdminLastName'].errors.required"> * Name is required
 
                 </p>
 
@@ -237,7 +265,7 @@
                   <i class="fa fa-phone" aria-hidden="true"></i>
                 </span>
 
-                <input type="number" name="AdminContact" class="form-control" placeholder="Phone  * " [formControl]="registerForm.controls['AdminContact']"
+                <input [(ngModel)]="admin.phone" type="number" name="AdminContact" class="form-control" placeholder="Phone  * " [formControl]="registerForm.controls['AdminContact']"
                   [ngClass]="{ 'has-error' : !registerForm.controls['AdminContact'].valid && registerForm.controls['BiContact'].touched && registerForm.controls['AdminContact'].dirty }">
 
                 <span class="md-line"></span>
@@ -263,7 +291,7 @@
                   <i class="fa fa-at" aria-hidden="true"></i>
                 </span>
 
-                <input type="email" name="AdminEmail" class="form-control" placeholder="Admin Email * " [formControl]="registerForm.controls['AdminEmail']"
+                <input [(ngModel)]="admin.email" type="email" name="AdminEmail" class="form-control" placeholder="Admin Email * " [formControl]="registerForm.controls['AdminEmail']"
                   [ngClass]="{ 'has-error' : ! registerForm.controls['AdminEmail'].valid && registerForm.controls['AdminEmail'].touched && registerForm.controls['AdminEmail'].dirty }">
 
                 <span class="md-line"></span>
@@ -290,7 +318,7 @@
                   <i class="fa fa-key" aria-hidden="true"></i>
                 </span>
 
-                <input type="email" name="AdminPassword" class="form-control" placeholder="Password * " [formControl]="registerForm.controls['AdminPassword']"
+                <input [(ngModel)]="admin.password" type="password" name="AdminPassword" class="form-control" placeholder="Password * " [formControl]="registerForm.controls['AdminPassword']"
                   [ngClass]="{ 'has-error' : ! registerForm.controls['AdminPassword'].valid && registerForm.controls['AdminPassword'].touched && registerForm.controls['AdminPassword'].dirty }">
 
                 <span class="md-line"></span>
@@ -318,16 +346,17 @@
                   <i class="fa fa-key" aria-hidden="true"></i>
                 </span>
 
-                <input type="email" name="AdminrePassword" class="form-control" placeholder="Repeat Password *">
+                <input type="password" name="AdminrePassword" class="form-control" placeholder="Repeat Password *">
 
                 <span class="md-line"></span>
               </div>
 
-
+              <!-- *********************** start Address For Admin ************** -->
               <div class="input-group">
 
 
-                <select (change)="getCity($event)" id="CountriesBox" class="m-r-5 custom-select col-md-4 col-xs-12">
+                <select (change)="getCity($event)" id="CountriesAdminBox" class="m-r-5 custom-select col-md-4 col-xs-12" [formControl]="registerForm.controls['BiCountry']"
+                  [(ngModel)]="admin.country" (ngModelChange)="onChange($event)" [ngClass]="{ 'has-error' : !registerForm.controls['BiCountry'].valid && registerForm.controls['BiCountry'].touched && registerForm.controls['BiCountry'].dirty }">
 
 
 
@@ -336,21 +365,22 @@
                 </select>
 
 
-                <select class="custom-select m-r-5 col-md-4 col-xs-12">
+                <select class="custom-select m-r-5 col-md-4 col-xs-12" [formControl]="registerForm.controls['BiCity']" [(ngModel)]="admin.city"
+                  [ngClass]="{ 'has-error' : !registerForm.controls['BiCity'].valid && registerForm.controls['BiCity'].touched && registerForm.controls['BiCity'].dirty }">
+
 
                   <option selected>City...</option>
-                  <option>cairo</option>
+                  <option *ngFor="let ci of city" value="{{ci.city}}">{{ci.city}}</option>
 
 
                 </select>
 
 
-                <select class="custom-select m-r-5 col-md-4 col-xs-12" id="inputGroupSelect04">
-
+                <select class="custom-select m-r-5 col-md-4 col-xs-12" id="inputGroupSelectAdmin04" [formControl]="registerForm.controls['BiState']"
+                  [(ngModel)]="admin.state" [ngClass]="{ 'has-error' : !registerForm.controls['BiState'].valid && registerForm.controls['BiState'].touched && registerForm.controls['BiState'].dirty }">
                   <option selected>State...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option *ngFor="let ci of city" value="{{ci.state}}">{{ci.state}}</option>
+
                 </select>
 
 
@@ -360,6 +390,7 @@
               </div>
 
               <!-- end Address -->
+
               <!-- validation -->
               <div *ngIf="registerForm.controls['AdminCountry'].errors && (registerForm.controls['AdminCountry'].dirty && registerForm.controls['BiCoAdminCountry'].touched) ||
 
@@ -390,7 +421,7 @@
                 </button>
 
 
-                <button class="btn-next" title="Next">
+                <button type="button" class="btn-next" title="Next">
 
                   <i class="fa fa-chevron-right"></i>
                 </button>
@@ -411,7 +442,7 @@
                   Message will be sent to this email to Confirm The Register
                 </p>
 
-                <button type="submit" class=" btn btn-primary btn-large btn-block"> Submit Email </button>
+                <button type="submit" class=" btn btn-primary btn-large btn-block">Save & Submit Email </button>
               </div>
 
               <div class="f1-buttons">

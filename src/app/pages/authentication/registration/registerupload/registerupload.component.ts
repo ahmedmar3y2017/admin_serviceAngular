@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadFileService } from '../../../../shared/Services/uploadservice/upload-file-service.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-registerupload',
   templateUrl: './registerupload.component.html',
@@ -40,4 +40,8 @@ export class RegisteruploadComponent implements OnInit {
 
     this.selectedFiles = undefined;
   }
+
+
+
+  
 }

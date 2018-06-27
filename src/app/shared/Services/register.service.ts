@@ -19,6 +19,8 @@ export class RegisterService {
   constructor(private _http: Http) {
   }
 
+  
+
 
   // save Business
   saveBusiness(business: Business): Observable<number> {
@@ -44,7 +46,7 @@ export class RegisterService {
     headers.append("Content-Type", "application/json; charset=utf8");
 
     const options = new RequestOptions({ headers: headers });
-    return this._http.post(this._baseUrl, admin, options)
+    return this._http.post(this._baseUrl+"/business/"+"1"+"/admin", admin, options)
       .map(success => success.status);
 
   }
@@ -59,7 +61,7 @@ export class RegisterService {
 
     const options = new RequestOptions({ headers: headers });
 
-    return this._http.get("http://localhost:8080/rest/business/city/?country="+country, options)
+    return this._http.get("http://localhost:8080/rest/business/city/?country=" + country, options)
       .map(response => response.json());
 
   }

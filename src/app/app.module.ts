@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutes } from './app.routing';
 
@@ -32,6 +33,7 @@ import { ProductsComponent } from "./pages/products/products.component";
     TitleComponent,
     AuthComponent
     ,
+
     RegisteruploadComponent,
     // WithBgImageComponent,
     ProductsComponent
@@ -44,7 +46,8 @@ import { ProductsComponent } from "./pages/products/products.component";
     SharedModule,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [AuthGuard, UserService, CountryService, RegisterService, UploadFileService],
   bootstrap: [AppComponent]

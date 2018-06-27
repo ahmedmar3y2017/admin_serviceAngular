@@ -9,9 +9,9 @@ import { promise } from 'protractor';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-state:boolean = false ;
+  state: boolean = false;
 
-  constructor (private authService:UserService ,private router :Router) {
+  constructor(private authService: UserService, private router: Router) {
 
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -19,32 +19,32 @@ state:boolean = false ;
     console.log(this.authService.getUserLogggedIn());
 
     // debugger;
-    this.state= this.authService.getUserLogggedIn();
+    this.state = this.authService.getUserLogggedIn();
     if (this.state) {
 
-      return  true;
+      return true;
     } else {
 
-        this.router.navigate(['authentication/login']);
+      this.router.navigate(['authentication/login']);
 
 
     }
 
 
-  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-  //   return this.authService.AuthLogin().then(
-  //       (auth:boolean) => {
-  //         if(auth){
+    // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+    //   return this.authService.AuthLogin().then(
+    //       (auth:boolean) => {
+    //         if(auth){
 
-  //           return true;
-  //         }
-  //         else{
+    //           return true;
+    //         }
+    //         else{
 
-  //           this.router.navigate(['authentication/login'])
-  //         }
-  //       }
-  //     );
-  // }
+    //           this.router.navigate(['authentication/login'])
+    //         }
+    //       }
+    //     );
+    // }
 
-}
+  }
 }

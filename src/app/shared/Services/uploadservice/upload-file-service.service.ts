@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -10,12 +10,19 @@ export class UploadFileService {
 
   pushFileToStorage(file: File): Observable<HttpEvent<{}>> {
     let formdata: FormData = new FormData();
-
+    let username: string = 'admin';
+    let password: string = 'admin';
     formdata.append('file', file);
 
-    const req = new HttpRequest('POST', '/post', formdata, {
+    let headers = new HttpHeaders(
+      {
+        'Authorization': "Basic " + btoa(username + ":" + password)
+      }
+    );
+    const req = new HttpRequest('POST', 'http://localhost:8080/post', formdata, {
       reportProgress: true,
-      responseType: 'text'
+      responseType: 'text',
+      headers: headers
     });
 
     return this.http.request(req);

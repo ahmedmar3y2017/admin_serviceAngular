@@ -6,6 +6,9 @@ import * as $ from 'jquery';
 import { RegisterService } from '../../../../shared/Services/register.service';
 import { Admin } from '../../../../shared/Entities/admin';
 import { Business } from '../../../../shared/Entities/Business';
+import { UploadFileService } from '../../../../shared/Services/uploadservice/upload-file-service.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+
 // declare var jquery:any;
 // declare var $ :any;
 
@@ -16,7 +19,17 @@ import { Business } from '../../../../shared/Entities/Business';
 })
 export class WithSocialComponent implements OnInit {
 
+
+
   // mar3y
+  // **************upload image ************************
+
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  progress: { percentage: number } = { percentage: 0 };
+
+  confirmAdminPass: string = "";
+
   admin: Admin = {
 
     id: 0,
@@ -73,7 +86,9 @@ export class WithSocialComponent implements OnInit {
   // payment_methods:[];
   data: any = [{}]
 
-  constructor(private registerService: RegisterService, private fb: FormBuilder, private country: CountryService
+  constructor(private registerService: RegisterService,
+    private fb: FormBuilder, private country: CountryService,
+    private uploadService: UploadFileService,
 
   ) {
 
@@ -95,10 +110,12 @@ export class WithSocialComponent implements OnInit {
       // "BiDescription":[null],
       //  this.:[null,Validators.required] ,
 
-      "AdminName": [null, Validators.required],
+      "AdminFirstName": [null, Validators.required],
+      "AdminLastName": [null, Validators.required],
+
       "AdminContact": [null, Validators.compose([Validators.required, Validators.maxLength(11)])],
       "AdminEmail": [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
-      "AdminPassword": [null, Validators.compose([Validators.required, Validators.pattern("[]")])],
+      "AdminPassword": [null, Validators.compose([Validators.required])],
 
       "AdminCountry": [null, Validators.required],
       "AdminCity": [null, Validators.required],
@@ -112,6 +129,45 @@ export class WithSocialComponent implements OnInit {
 
 
   // **************************** mar3y *************************
+  RegisterClick() {
+    console.log("Register");
+
+
+  }
+  mySubmit({ value, valid }: { value: any, valid: boolean }) {
+    // if (!valid) {
+    //   console.log("Invalid");
+
+    // } else {
+    //   console.log("Valid");
+
+    // }
+
+    // ****************** save Business First ****************
+
+    this.registerService.saveBusiness(this.business).subscribe(data => {
+
+      if (data === 201) {
+        console.log(this.admin.id);
+
+
+      } else {
+        console.log("Error Insert Into database ");
+      }
+
+    }, error => {
+      console.log(JSON.stringify(error.json()));
+    });
+    this.registerService.saveAdmins(this.admin).subscribe(dd => {
+      console.log("ِadmin : "+dd);
+
+
+    }, error => {
+      console.log(JSON.stringify(error.json()));
+    });
+
+  }
+
   // on change event on country selected 
   onChange(newValue) {
     console.log("New Value : " + newValue);
@@ -155,6 +211,43 @@ export class WithSocialComponent implements OnInit {
     });
 
   }
+
+  // ********************** upload image *****************************
+
+
+  selectFile(event) {
+    const file = event.target.files.item(0);
+
+    if (file.type.match('image.*')) {
+      this.selectedFiles = event.target.files;
+    } else {
+      alert('invalid format!');
+    }
+  }
+
+  upload() {
+    this.progress.percentage = 0;
+
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress.percentage = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        console.log('File is completely uploaded!');
+      }
+    });
+
+    this.selectedFiles = undefined;
+  }
+
+
+
+
+  // *******************************************************
+
+
+
+
   // *********************************************************************
 
 
