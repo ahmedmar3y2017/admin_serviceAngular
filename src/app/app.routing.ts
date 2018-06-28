@@ -1,8 +1,10 @@
+import { OrdersComponent } from './pages/orders/orders.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { AuthGuard } from './shared/Services/auth.guard';
 import {Routes} from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {AuthComponent} from './layout/auth/auth.component';
+import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
 
 export const AppRoutes: Routes = [
 
@@ -43,7 +45,7 @@ export const AppRoutes: Routes = [
         loadChildren: './pages/ui-elements/basic/basic.module#BasicModule'
       }, {
         path: 'notifications',
-        loadChildren: './pages/ui-elements/advance/notifications/notifications.module#NotificationsModule'
+         loadChildren: './pages/ui-elements/advance/notifications/notifications.module#NotificationsModule'
       }, {
         path: 'bootstrap-table',
         loadChildren: './pages/ui-elements/tables/bootstrap-table/basic-bootstrap/basic-bootstrap.module#BasicBootstrapModule',
@@ -53,14 +55,21 @@ export const AppRoutes: Routes = [
       }, {
         path: 'user',
         loadChildren: './pages/user/profile/profile.module#ProfileModule'
-      }, {
-        path: 'simple-page',
-        loadChildren: './pages/simple-page/simple-page.module#SimplePageModule'
       },
       {
         path: 'products',
         component: ProductsComponent,
         // loadChildren: './pages/simple-page/simple-page.module#SimplePageModule'
+
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent,
+
+      },
+      {
+        path: 'changePassword',
+        component: ChangePasswordComponent,
 
       }
     ]
