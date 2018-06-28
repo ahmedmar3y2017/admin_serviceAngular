@@ -11,4 +11,5 @@ describe('guru-new-able App', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
+  
 });

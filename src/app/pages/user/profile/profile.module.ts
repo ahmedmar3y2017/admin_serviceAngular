@@ -8,6 +8,7 @@ import {QuillEditorModule} from 'ngx-quill-editor';
 import {HttpModule} from '@angular/http';
 import {DataTableModule} from 'angular2-datatable';
 import {AngularEchartsModule} from 'ngx-echarts';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 export const profileRoutes: Routes = [
   {
@@ -32,6 +33,6 @@ export const profileRoutes: Routes = [
     DataTableModule,
     AngularEchartsModule
   ],
-  declarations: [ProfileComponent]
+  declarations: [ProfileComponent ]
 })
 export class ProfileModule { }

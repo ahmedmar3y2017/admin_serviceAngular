@@ -54,6 +54,9 @@
                   </p>
                   </div>
 
+
+
+
               <div class="row m-t-25 text-left">
                 <div class="col-sm-6 col-xs-12">
                   <div class="checkbox-fade fade-in-primary">
@@ -72,7 +75,6 @@
                 <div class="col-md-12">
                   <button [disabled]="! complexForm.valid " type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button>
                 </div>
-
               </div>
               <hr/>
               <div class="row">
@@ -84,23 +86,6 @@
                 <div class="col-md-2">
                   <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
                 </div>
-
-                <div *ngIf="currentFileUpload" class="progress">
-                  <div class="progress-bar progress-bar-info progress-bar-striped"
-                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-                    aria-valuemin="0" aria-valuemax="100"
-                    [ngStyle]="{width:progress.percentage+'%'}">
-                    {{progress.percentage}}%</div>
-                </div>
-                 
-                <label class="btn btn-default">
-                  <input type="file" (change)="selectFile($event)">
-                </label>
-                 
-                <button class="btn btn-success" [disabled]="!selectedFiles"
-                  (click)="upload()">Upload</button>
-              
-
               </div>
             </div>
           </form>
@@ -108,11 +93,4 @@
       </div>
     </div>
   </div>
-
-
-
-  <!-- <app-registerupload></app-registerupload> -->
-  <!-- <app-registerupload></app-registerupload> -->
 </section>
-
-

@@ -57,8 +57,20 @@ export class ProfileComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
   profitChartOption: any;
-
+  payment;
   constructor(public http: Http) {
+    this.payment = [
+      { name :'Vodafon Cash' , check : true },
+      { name :'Paypal' , check : false },
+      { name :'Visa' , check : true },
+      { name :'Master Card' , check : false },
+      { name :'Foray' , check : false },
+
+
+
+
+    ] ;
+
   }
 
   ngOnInit() {

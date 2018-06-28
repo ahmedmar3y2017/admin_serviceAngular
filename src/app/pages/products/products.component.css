@@ -2,10 +2,106 @@
   padding: 5px 10px;
   color:#f3f3f3 ;
   border-radius: 5px;
+  cursor: pointer;
 }
 .cus-btn:first-of-type{
   border: 1px solid #ddd;
 }
 th{
   text-align:  center !important;
+}
+.clickable{
+  cursor: pointer;
+  color:#f6f6f6 !important
+}
+
+.card-header {
+  padding: 10px 15px;
+
+}
+.card-heading div span{
+margin-left:5px;
+}
+.card-body{
+display: none;
+}
+
+.card-title {
+  display: inline-block;
+}
+
+table tr th , table tr td{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.cont{
+  display: flex;
+}
+
+.btnn{
+  margin-right: 12px;
+  font-size: 13px;
+  color: #fff !important;
+}
+.btnn i {
+  font-size: 15px;
+}
+
+.card-body {
+  position: relative;
+}
+
+.card-body  .fil-icon {
+  position: absolute;
+  top: 29px;
+  right: 35px;
+  cursor: pointer;
+color:
+  #a7a0a0 !important;}
+
+
+
+  .form-group {
+    position: relative;
+      margin-top: .5rem;
+      margin-bottom: .9rem;
+
+  }
+
+  .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 10px 0 0 10px;
+    transition: all 200ms;
+    opacity: 0.5;
+  }
+
+  .form-control:focus + .form-control-placeholder,
+  .form-control:invalid + .form-control-placeholder {
+    font-size: 90%;
+    transform: translate3d(0, -110%, 0);
+    opacity: 1;
+    margin-left: -5px;
+    font-weight: 600;
+
+
+  }
+  .form-control:focus , textarea:focus{
+  border: none !important;
+  border-color: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  outline: -webkit-focus-ring-color auto 5px;
+  border: 1px solid #cccccc;
+
+
+  /* border-color: rgba(126, 239, 104, 0.8); */
+  /* box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 0 8px rgba(0, 0, 0, 0.6); */
+  /* outline: 0 #ccc; */
+
+
+}
+.dataTables_length , .dataTables_filter{
+  display: none;
 }

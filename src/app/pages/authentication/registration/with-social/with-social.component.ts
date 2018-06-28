@@ -1,3 +1,4 @@
+import { Business } from './../../../../shared/Entities/Bussiness';
 import { CountryService } from './../../../../shared/Services/Country.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -5,11 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as $ from 'jquery';
 import { RegisterService } from '../../../../shared/Services/register.service';
 import { Admin } from '../../../../shared/Entities/admin';
-import { Business } from '../../../../shared/Entities/Business';
-import { UploadFileService } from '../../../../shared/Services/uploadservice/upload-file-service.service';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-
 // declare var jquery:any;
 // declare var $ :any;
 
@@ -20,17 +16,26 @@ import { Router } from '@angular/router';
 })
 export class WithSocialComponent implements OnInit {
 
+  public BiName: string = null;
+  public BiContact: string = null;
+  public BiEmail: string = null;
+  public BiCountry: string = null;
+  public BiCity: string = null;
+  public BiState: string = null;
+  public BiPostalCode: string = null;
+
+  public AdminName: string = null;
+  public AdminContact: string = null;
+  public AdminPassword: string = null;
+  public AdminEmail: string = null;
+  public AdminCountry: string = null;
+  public AdminCity: string = null;
+  public AdminState: string = null;
+  public AdminPostalCode: string = null;
+
 
 
   // mar3y
-  // **************upload image ************************
-
-  selectedFiles: FileList;
-  currentFileUpload: File;
-  progress: { percentage: number } = { percentage: 0 };
-
-  confirmAdminPass: string = "";
-
   admin: Admin = {
 
     id: 0,
@@ -54,6 +59,7 @@ export class WithSocialComponent implements OnInit {
     available: true
 
   };
+
   business: Business = {
 
     id: 0,
@@ -74,6 +80,7 @@ export class WithSocialComponent implements OnInit {
     active: 1
 
   };
+
   selectedCountry = '';
   city: any = [{}]
 
@@ -83,21 +90,16 @@ export class WithSocialComponent implements OnInit {
     this.SlideFun();
 
   }
-  registerForm: FormGroup;
-  // payment_methods:[];
-  data: any = [{}];
 
-  constructor(private registerService: RegisterService,
-    private fb: FormBuilder, private country: CountryService,
-    private uploadService: UploadFileService,
-    private router: Router
+  registerForm: FormGroup;
+  data: any = [{}]
+  payment;
+
+  constructor(private registerService: RegisterService, private fb:FormBuilder, private country: CountryService
 
   ) {
 
     this.getAllCountries();
-
-
-
     this.registerForm = fb.group({
       "BiName": [null, Validators.required],
       "BiContact": [null, Validators.compose([Validators.required, Validators.maxLength(11)])],
@@ -112,12 +114,10 @@ export class WithSocialComponent implements OnInit {
       // "BiDescription":[null],
       //  this.:[null,Validators.required] ,
 
-      "AdminFirstName": [null, Validators.required],
-      "AdminLastName": [null, Validators.required],
-
+      "AdminName": [null, Validators.required],
       "AdminContact": [null, Validators.compose([Validators.required, Validators.maxLength(11)])],
       "AdminEmail": [null, Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
-      "AdminPassword": [null, Validators.compose([Validators.required])],
+      "AdminPassword": [null, Validators.compose([Validators.required, Validators.pattern("[]")])],
 
       "AdminCountry": [null, Validators.required],
       "AdminCity": [null, Validators.required],
@@ -125,61 +125,50 @@ export class WithSocialComponent implements OnInit {
 
     });
 
+    this.payment = [
+      'Vodafon Cash',
+      'Paypal',
+      "Foray",
+      "Visa",
+      "Master Card"
 
-
-  }
-
-
-  // **************************** mar3y *************************
-  RegisterClick() {
-    console.log("Register");
-
-
-  }
-  mySubmit({ value, valid }: { value: any, valid: boolean }) {
-    // if (!valid) {
-    //   console.log("Invalid");
-
-    // } else {
-    //   console.log("Valid");
-
-    // }
-
-
-    // check First Admin And Business Accounts if Exists 
-
-    // ****************** save Business First ****************
-
-    this.registerService.saveBusiness(this.business).subscribe(data => {
-
-      this.registerService.saveAdmins(this.admin, data.id).subscribe(dd => {
-
-
-        // redirect To Login To Login As Admin 
-        this.router.navigate(['authentication/login']);
-
-
-
-      }, error => {
-        console.log(JSON.stringify(error.json()));
-      });
-
-
-    }, error => {
-      console.log(JSON.stringify(error.json()));
-    });
+    ]
 
   }
 
-  // on change event on country selected 
+
+  // ************************** mar3y ***********************
+  // on change event on country selected
   onChange(newValue) {
     console.log("New Value : " + newValue);
     this.business.country = newValue;
-    // change city combobox data 
+    // change city combobox data
     this.getCity(newValue);
 
   }
 
+  SaveBusiness(business: Business) {
+    // save Business Service
+    this.registerService.saveBusiness(business).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(JSON.stringify(error.json()));
+    });
+
+
+
+  }
+  saveAdmin(admin: Admin) {
+    // save admin Service
+    this.registerService.saveAdmins(admin).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(JSON.stringify(error.json()));
+    });
+
+
+
+  }
   getAllCountries() {
     this.country.getData().subscribe(data => {
       this.data = data;
@@ -193,36 +182,9 @@ export class WithSocialComponent implements OnInit {
     });
 
   }
+  // *******************************************************************
 
-  // ********************** upload image *****************************
 
-
-  selectFile(event) {
-    const file = event.target.files.item(0);
-
-    if (file.type.match('image.*')) {
-      this.selectedFiles = event.target.files;
-    } else {
-      alert('invalid format!');
-    }
-  }
-
-  upload() {
-    this.progress.percentage = 0;
-
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress.percentage = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        console.log('File is completely uploaded!');
-      }
-    });
-
-    this.selectedFiles = undefined;
-  }
-
-  // *********************************************************************
 
   SlideFun() {
 
@@ -302,25 +264,4 @@ export class WithSocialComponent implements OnInit {
 
 
 }
-
-
-
-
-
-
-
-
-// }
-
-// ngOnInit() {
-
-
-
-
-// }
-
-
-
-
-
 

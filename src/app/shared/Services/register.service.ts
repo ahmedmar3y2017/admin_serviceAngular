@@ -1,11 +1,11 @@
+import { Business } from './../Entities/Bussiness';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
-import { Admin } from '../Entities/admin';
-import { Business } from '../Entities/Business';
+import { Admin } from './../Entities/admin';
 
 
 @Injectable()
@@ -20,10 +20,8 @@ export class RegisterService {
   }
 
 
-
-
   // save Business
-  saveBusiness(business: Business): Observable<Business> {
+  saveBusiness(business: Business): Observable<number> {
 
     let username: string = 'admin';
     let password: string = 'admin';
@@ -33,12 +31,12 @@ export class RegisterService {
 
     const options = new RequestOptions({ headers: headers });
     return this._http.post(this._baseUrl + "/business", business, options)
-      .map((response: Response) => <Business>response.json());
+      .map(success => success.status);
 
   }
 
   // save Admin
-  saveAdmins(admin: Admin, businessId: number): Observable<Admin> {
+  saveAdmins(admin: Admin): Observable<number> {
     let username: string = 'admin';
     let password: string = 'admin';
     let headers: Headers = new Headers();
@@ -46,11 +44,11 @@ export class RegisterService {
     headers.append("Content-Type", "application/json; charset=utf8");
 
     const options = new RequestOptions({ headers: headers });
-    return this._http.post(this._baseUrl + "/business/" + businessId + "/admin", admin, options)
-      .map((response: Response) => <Admin>response.json());
+    return this._http.post(this._baseUrl, admin, options)
+      .map(success => success.status);
 
   }
-  // get city 
+  // get city
   getCity(country) {
 
     let username: string = 'admin';
@@ -61,7 +59,7 @@ export class RegisterService {
 
     const options = new RequestOptions({ headers: headers });
 
-    return this._http.get("http://localhost:8080/rest/business/city/?country=" + country, options)
+    return this._http.get("http://localhost:8080/rest/business/city/?country="+country, options)
       .map(response => response.json());
 
   }
@@ -71,7 +69,7 @@ export class RegisterService {
   //get all admins
   getAdminsForBusiness(businessId: number): Observable<Admin[]> {
     // const cpHeaders = new Headers({ 'Content-Type': 'application/json'});
-    // headers.append("Authorization", "Basic " + btoa("admin" + ":" + "admin")); 
+    // headers.append("Authorization", "Basic " + btoa("admin" + ":" + "admin"));
     // headers.append("Authorization", "Basic VXNlcm5hbWU6UGFzc3dvcmQ=");
     let username: string = 'admin';
     let password: string = 'admin';

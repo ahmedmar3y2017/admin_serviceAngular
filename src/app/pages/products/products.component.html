@@ -1,9 +1,41 @@
 <div class="row">
   <div class="col-sm-12">
     <!-- Basic table card start -->
-    <app-card [title]="'Product table'" [classHeader]="true" [blockClass]="'table-border-style'">
-      <div class="table-responsive table-hover table-sm table-striped" style="padding: 10px 5px;">
-        <table class="table">
+    <!-- <app-card [title]="'Product table'" [classHeader]="true" [blockClass]="'table-border-style'"> -->
+				<div class="card ">
+
+            <div class="card-header text-white bg-primary">
+                <h4 class="card-title text-white">Products</h4>
+
+                <div class="pull-right text-white cont ">
+
+                  <button  class="clickable filter btnn btn btn-sm btn-default"  data-container="body">
+
+                    <i class="fa fa-filter"></i>
+                    Fillter
+                  </button>
+                  <button type="button" class="clickable  btnn btn btn-sm btn-default"
+                  data-toggle="modal" data-target="#exampleModal">
+
+                      <i class="fa fa-plus"></i>
+                      Add New
+                    </button>
+
+
+                  </div>
+
+              </div>
+
+              <!-- <div class="card-body">
+                <input type="text" class="form-control" id="product-table-filter" data-action="filter" data-filters="#product-table" placeholder="Filter Prdoduct" />
+                <i class="fa fa-search fil-icon"></i>
+
+
+              </div> -->
+
+      <div class="table-responsive table-hover table-sm table-striped" style="padding: 0;
+      ">
+        <table class="table" id="productTable">
           <thead>
           <tr class = "text-center">
             <th>#</th>
@@ -29,19 +61,26 @@
 
               <!-- last cell -->
               <td align="center">
-                <a class="btn cus-btn btn-default"><em class="fa fa-pencil"></em></a>
-                <a class="btn cus-btn btn-danger"><em class="fa fa-trash"></em></a>
+                <a class="btn cus-btn  btn-default"  data-toggle="modal" data-target="#exampleModal" ><em class="fa fa-pencil"></em></a>
+                <a class="btn cus-btn clickable btn-danger"><em class="fa fa-trash"></em></a>
               </td>
 
             </tr>
           </tbody>
 
         </table>
+
+         <!-- <div class="row no-margin m-t-10">
+      <div class="col-sm-12 col-md-5"><div class="dataTables_info" id="example_info" role="status" aria-live="polite"></div></div>
+
+        <div class="col-sm-12 col-md-7 dataTables_paginate paging_simple_numbers" id="example_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example_previous"><a href="#" aria-controls="example" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example_next"><a href="#" aria-controls="example" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div>
       </div>
+          </div>
+ -->
 
+      <!-- <nav aria-label="Page navigation  ">
 
-      <nav aria-label="Page navigation example ">
-        <ul class="pagination justify-content-end m-b-20 m-t-20 m-r-20 ">
+        <ul class="pagination justify-content-end m-b-15 m-t-10 m-r-20 ">
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
@@ -58,9 +97,9 @@
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
 
-    </app-card>
+        </div>
 
 
 
@@ -68,4 +107,261 @@
 </div>
     <!-- Basic table card end -->
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Product </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form  [formGroup]="product_form" novalidate>
+              <div class="row">
+                  <div class="form-group col-12">
+                    <input type="text" id="name" class="form-control" formControlName="pro_name" name="pro_name" [(ngModel)]="pro_name"   [ngClass]="{ 'has-error' : !product_form.controls['pro_name'].valid && product_form.controls['pro_name'].touched && product_form.controls['pro_name'].dirty }">
 
+
+
+
+                    <!-- validation -->
+                    <div *ngIf="product_form.controls['pro_name'].errors && (product_form.controls['pro_name'].dirty && product_form.controls['pro_name'].touched)">
+
+                      <p class="text-left text-danger" [hidden]="!product_form.controls['pro_name'].errors.required"> * Name is required
+
+                      </p>
+
+                    </div>
+
+                    <label class="form-control-placeholder" for="name">Name</label>
+                  </div>
+
+              <!-- end name -->
+
+
+
+
+                  <div class="form-group col-md-6 col-12">
+
+
+
+                      <input type="number" id="Price" class="form-control"  formControlName="pro_price" name="pro_price"  [ngClass]="{ ' has-error ' : ! product_form.controls['pro_price'].valid && product_form.controls['pro_price'].touched && product_form.controls['pro_price'].dirty }" >
+                      <label class="form-control-placeholder" for="Price">Price</label>
+
+
+                      <div class="m-b-0" *ngIf="product_form.controls['pro_price'].errors && (product_form.controls['pro_price'].dirty && product_form.controls['pro_price'].touched)">
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_price'].errors.required"> * Price is required
+
+                         </p>
+
+
+                         <p class="text-left text-danger" [hidden]="!product_form.controls['pro_price'].errors.maxLength"> * MaxLength invalid
+
+                          </p>
+
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_price'].errors.pattern"> *positive number only
+
+                            </p>
+
+                          </div>
+
+
+
+
+                    </div>
+
+
+                    <div class="form-group col-md-6 col-12">
+
+                      <input type="number" id="Discount" formControlName="pro_discount"  class="form-control" [ngClass]="{ ' has-error ' : ! product_form.controls['pro_discount'].valid && product_form.controls['pro_discount'].touched && product_form.controls['pro_discount'].dirty }" >
+                      <label class="form-control-placeholder"  for="Discount">Discount</label>
+
+                        <div class="m-b-0" *ngIf="product_form.controls['pro_discount'].errors && (product_form.controls['pro_discount'].dirty && product_form.controls['pro_discount'].touched)">
+
+                            <p class="text-left text-danger" [hidden]="!product_form.controls['pro_discount'].errors.required"> * Discount is required
+
+                           </p>
+
+
+                           <p class="text-left text-danger" [hidden]="!product_form.controls['pro_discount'].errors.maxLength"> * MaxLength invalid
+
+                            </p>
+
+
+                            <p class="text-left text-danger" [hidden]="!product_form.controls['pro_discount'].errors.pattern"> *positive number only
+
+                              </p>
+
+                            </div>
+
+
+
+
+                      </div>
+
+
+
+                  <div class="form-group col-md-6 col-12">
+                    <input type="text" id="Brand" class="form-control" formControlName="pro_brand"  class="form-control" [ngClass]="{ ' has-error ' : ! product_form.controls['pro_brand'].valid && product_form.controls['pro_brand'].touched && product_form.controls['pro_brand'].dirty }">
+                    <label class="form-control-placeholder"  for="Brand">Brand</label>
+
+
+
+                      <div class="m-b-0" *ngIf="product_form.controls['pro_brand'].errors && (product_form.controls['pro_brand'].dirty && product_form.controls['pro_brand'].touched)">
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_brand'].errors.required"> * Brand Name is required
+
+                         </p>
+
+
+
+                          </div>
+
+
+                    </div>
+
+
+                      <!-- //change it to be select box  -->
+                    <div class="form-group col-md-6 col-12">
+                        <input type="text" id="Category" class="form-control" formControlName="pro_Category"  class="form-control" [ngClass]="{ ' has-error ' : ! product_form.controls['pro_Category'].valid && product_form.controls['pro_Category'].touched && product_form.controls['pro_Category'].dirty }" >
+                        <label class="form-control-placeholder" for="Category">Category</label>
+
+
+
+                      <div class="m-b-0" *ngIf="product_form.controls['pro_Category'].errors && (product_form.controls['pro_Category'].dirty && product_form.controls['pro_Category'].touched)">
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_Category'].errors.required"> * Categoty is required
+
+                         </p>
+
+
+
+                          </div>
+
+
+
+                      </div>
+
+                  <div class="form-group col-md-4 col-12">
+                    <input type="number" id="Quantity" formControlName="pro_Quantity" class="form-control" [ngClass]="{ ' has-error ' : ! product_form.controls['pro_Quantity'].valid && product_form.controls['pro_Quantity'].touched && product_form.controls['pro_Quantity'].dirty }"
+                    >
+
+                    <label class="form-control-placeholder" for="Quantity">Quantity</label>
+
+
+                    <div class="m-b-0" *ngIf="product_form.controls['pro_Quantity'].errors && (product_form.controls['pro_Quantity'].dirty && product_form.controls['pro_Quantity'].touched)">
+
+                        <p class="text-left text-danger" [hidden]="!product_form.controls['pro_Quantity'].errors.required"> * Quantity is required
+
+                       </p>
+
+                       <p class="text-left text-danger" [hidden]="!product_form.controls['pro_Quantity'].errors.maxLength"> * MaxLength InValid
+
+                        </p>
+
+                        <p class="text-left text-danger" [hidden]="!product_form.controls['pro_Quantity'].errors.pattern"> * Positive Number Only
+
+                          </p>
+
+
+                        </div>
+
+
+                  </div>
+
+
+
+
+                  <div class="form-group col-md-4 col-12">
+                      <input type="number" id="unitCost" class="form-control" formControlName="pro_unitCost" [ngClass]="{ ' has-error ' : ! product_form.controls['pro_unitCost'].valid && product_form.controls['pro_unitCost'].touched && product_form.controls['pro_unitCost'].dirty }"
+
+                      >
+                      <label class="form-control-placeholder" for="unitCost">Unit Cost</label>
+
+
+                      <div class="m-b-0" *ngIf="product_form.controls['pro_unitCost'].errors && (product_form.controls['pro_unitCost'].dirty && product_form.controls['pro_unitCost'].touched)">
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_Quantity'].errors.required"> * unitCost is required
+
+                         </p>
+
+                         <p class="text-left text-danger" [hidden]="!product_form.controls['pro_unitCost'].errors.maxLength"> * MaxLength InValid
+
+                          </p>
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_unitCost'].errors.pattern"> * Positive Number Only
+
+                            </p>
+
+
+                          </div>
+
+
+
+
+                    </div>
+
+
+                    <div class="form-group col-md-4 col-12">
+                        <input type="number" id="unitWeight" class="form-control" formControlName="pro_UnitWeight" [ngClass]="{ ' has-error ' : ! product_form.controls['pro_UnitWeight'].valid && product_form.controls['pro_UnitWeight'].touched && product_form.controls['pro_UnitWeight'].dirty }"
+                        >
+
+                        <label class="form-control-placeholder" for="unitWeight">unit Weight</label>
+
+
+
+                      <div class="m-b-0" *ngIf="product_form.controls['pro_UnitWeight'].errors && (product_form.controls['pro_UnitWeight'].dirty && product_form.controls['pro_UnitWeight'].touched)">
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_UnitWeight'].errors.required"> * UnitWeight is required
+
+                         </p>
+
+                         <p class="text-left text-danger" [hidden]="!product_form.controls['pro_UnitWeight'].errors.maxLength"> * MaxLength InValid
+
+                          </p>
+
+                          <p class="text-left text-danger" [hidden]="!product_form.controls['pro_UnitWeight'].errors.pattern"> * Positive Number Only
+
+                            </p>
+
+
+                          </div>
+
+
+                      </div>
+
+
+                      <div class="form-group col-12">
+
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input btn-primary"  id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">Uplaod photo</label>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group col-12">
+
+                            <textarea class="form-control" id="description" rows="3" required></textarea>
+                            <label class="form-control-placeholder" for="description">Short Dscerption</label>
+
+
+                          </div>
+                        </div>
+                    </form>
+
+
+
+              <!-- </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+          <button type="submit"  [disabled]="!product_form.valid" class="btn btn-primary btn-sm">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

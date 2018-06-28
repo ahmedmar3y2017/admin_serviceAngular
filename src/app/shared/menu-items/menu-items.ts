@@ -41,6 +41,38 @@ const MENUITEMS = [
         type: 'link',
         icon: 'ti-home'
       },
+
+      {
+        state: 'products',
+        short_label: 'P',
+        name: 'Products',
+        type: 'link',
+        icon: 'ti-layout-sidebar-left'
+      },
+
+      {
+        state: 'orders',
+        short_label: 'O',
+        name: 'Orders',
+        type: 'link',
+        icon: 'ti-crown'
+      },
+
+      {
+        state: 'customers',
+        short_label: 'C',
+        name: 'Customers',
+        type: 'link',
+        icon: 'ti-id-badge'
+      },
+
+      {
+        state: 'reports',
+        short_label: 'R',
+        name: 'Reports',
+        type: 'link',
+        icon: 'ti-layout-grid2-alt'
+      },
       {
         state: 'basic',
         short_label: 'B',
@@ -179,13 +211,7 @@ const MENUITEMS = [
           }
         ]
       },
-      {
-        state: 'simple-page',
-        short_label: 'S',
-        name: 'Simple Page',
-        type: 'link',
-        icon: 'ti-layout-sidebar-left'
-      }
+
     ]
   }, {
     label: 'Support',

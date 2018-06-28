@@ -24216,3 +24216,150 @@ used to vertically center elements, may need modification if you're not using de
   line-height: 34px;
 }
 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
+
+.md-tabs .nav-item {
+    background-color: #fff;
+    width: calc(100% / 2);
+    text-align: center;
+}
+.input-group span {
+  cursor: pointer;
+  border-radius: 0;
+}
+.bold{
+  font-weight:bold;
+}
+.m-t-0{
+  margin-top:0 !important;
+}
+div.dataTables_wrapper div.dataTables_paginate{margin:0;white-space:nowrap;text-align:right}div.dataTables_wrapper div.dataTables_paginate ul.pagination{margin:2px 0;white-space:nowrap;justify-content:flex-end}div.dataTables_wrapper div.dataTables_processing{position:absolute;top:50%;left:50%;width:200px;margin-left:-100px;margin-top:-26px;text-align:center;padding:1em 0}
+
+
+.dataTables_length{
+  display: inline-block;
+  padding:15px;
+
+}
+.dataTables_length label{
+  padding: .375rem .75rem;
+
+}
+ .dataTables_filter{
+  /* display: none */
+  display: inline;
+    float: right;
+    padding: 15px;
+    width: 70%
+}
+.dataTables_filter label {
+  width: 100%;
+}
+.dataTables_filter input{
+
+  width: 85%;
+margin-left: 1em;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.dataTables_filter , .dataTables_length {
+  transition:all .5s ease-in-out;
+  display:none;
+}
+.inline{
+  display:inline-block !important;
+   transition:all .5s ease-in-out;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    display: inline-block;
+    padding: 15px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+    padding: 15px;
+    display: inline-block;
+    float: right;
+    justify-content: flex-end;
+}
+.paginate_button .previous , .paginate_button .next {
+
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+      display: inline-flex;
+
+}
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    border-radius: 0.25rem;
+    padding: 15px;
+    Padding-top:0;
+    float: right;
+}
+
+body.example div.dataTables_wrapper ul li, body.example div.dataTables_wrapper ol li {
+    padding: 0;
+    border: none !important;
+}
+.no-margin{
+  margin:0 !important;
+}
+.table-sm td.dataTables_empty
+{
+      text-align: center !important;
+    padding: .8rem !important;
+}
+
+.paginate_button{
+
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.paging_simple_numbers a.disabled  {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+.paginate_button:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.paging_simple_numbers a.current  {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
