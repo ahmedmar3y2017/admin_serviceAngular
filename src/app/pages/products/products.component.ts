@@ -63,33 +63,28 @@ export class ProductsComponent implements OnInit {
     $(function(){
       $.noConflict();
 
-      //  $('#productTable_filter').addClass('filter');
       $('#productTable').DataTable();
 
 
 
-   $( ".card").on('click', '.card-header .filter', function(e){
-      var $this = $(this),
+      $( ".card").on('click', '.card-header .filter', function(e){
+        var $this = $(this),
         $panel = $('.dataTables_filter') ,
         $entry =  $('.dataTables_length');
-        
+
         setTimeout(() => {
           $panel.toggleClass('inline', 10000);
-      $entry.toggleClass('inline' , 10000);
-        }, 240);
-      
+          $entry.toggleClass('inline' , 10000);
+            }, 100);
 
 
- 
-      if($panel.css('display') != 'none') {
-        $('.dataTables_filter input').focus();
-      }
+        if($panel.css('display') != 'none') {
+          $('.dataTables_filter input').focus();
+        }
     });
-    // $('[data-toggle="tooltip"]').tooltip();
+
   })
-
-
-  }
+}
 
 
 
